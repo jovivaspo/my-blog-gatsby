@@ -5,7 +5,14 @@ require("dotenv").config({
 const strapiConfig = {
   apiURL: process.env.STRAPI_API_URL,
   accessToken: process.env.STRAPI_TOKEN,
-  collectionTypes: ["category", "post"],
+  collectionTypes: [
+    {
+      singularName: "post",
+    },
+    {
+      singularName: "category",
+    },
+  ],
   singleTypes: [],
 };
 
