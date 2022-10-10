@@ -1,0 +1,59 @@
+.header {
+  width: 100%;
+  height: 85vh;
+  position: relative;
+}
+
+.header .content-main-image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.header .gradient-image {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  background-image: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.7) 80%
+  );
+  z-index: 2;
+}
+
+.header .main-image {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.header .header-content {
+  position: absolute;
+  bottom: 0;
+  padding: 1rem;
+  width: 100%;
+  z-index: 3;
+}
+
+.header .title {
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    height: 40vh;
+  }
+  .header .title {
+    font-size: 2rem;
+  }
+}

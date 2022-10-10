@@ -1,0 +1,26 @@
+.navbar {
+  position: absolute;
+  top: 0;
+  height: 80px;
+  width: 100vw;
+  background: transparent;
+}
+
+.navbar-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 10;
+  padding: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

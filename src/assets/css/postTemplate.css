@@ -1,0 +1,23 @@
+.full-content {
+  width: 100%;
+  display: flex;
+  gap: 1.5em;
+  margin-top: 2rem;
+  margin-bottom: 160px;
+}
+
+.full-content section {
+  width: 78%;
+  padding-left: 3rem;
+}
+
+@media screen and (max-width: 768px) {
+  .full-content {
+    margin-top: 1rem;
+  }
+  .full-content section {
+    width: 90%;
+    padding-left: 0;
+    margin: 0 auto;
+  }
+}

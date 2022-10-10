@@ -1,0 +1,24 @@
+.container-header-post {
+  position: relative;
+}
+
+.container-header-post .main-image {
+  width: 100%;
+}
+
+.container-header-post .title {
+  position: absolute;
+  bottom: 3rem;
+  left: 1rem;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .container-header-post .title {
+    font-size: 2.5rem;
+  }
+}
