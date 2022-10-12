@@ -7,13 +7,11 @@ const strapiConfig = {
   accessToken: process.env.STRAPI_TOKEN,
   collectionTypes: [
     {
-      singularName: "post",
+      singularName: "article",
     },
-    {
-      singularName: "category",
-    },
+    { singularName: "category" },
+    { singularName: "author" },
   ],
-  singleTypes: [],
 };
 
 module.exports = {
@@ -24,6 +22,62 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: strapiConfig,
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/src/assets/images`,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              // It's important to specify the maxWidth (in pixels) of
+              // the content container as this plugin uses this as the
+              // base for generating different widths of each image.
+              maxWidth: 600,
+              linkImagesToOriginal: false,
+              sizeByPixelDensity: true,
+              showCaptions: true,
+            },
+          },
+        ],
+      },
+    },
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        icon: "src/assets/images/Favicon.png",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-webfonts`,
+      options: {
+        fonts: {
+          google: [
+            {
+              family: "Anton",
+              variants: ["400"],
+            },
+            {
+              family: "Libre Franklin",
+              variants: ["300", "400", "500"],
+            },
+            {
+              family: "Lato",
+              variants: ["300", "400", "500"],
+            },
+          ],
+        },
+      },
     },
   ],
 };

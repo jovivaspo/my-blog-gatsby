@@ -4,20 +4,20 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const result = await graphql(`
     query MyPostQuery {
-      allStrapiPost {
+      allStrapiArticle {
         nodes {
-          title
+          slug
         }
       }
     }
   `);
 
-  result.data.allStrapiPost.nodes.forEach((post) => {
+  result.data.allStrapiArticle.nodes.forEach((post) => {
     createPage({
-      path: post.title,
+      path: post.slug,
       component: path.resolve("src/templates/postTemplate.js"),
       context: {
-        title: post.title,
+        slug: post.slug,
       },
     });
   });

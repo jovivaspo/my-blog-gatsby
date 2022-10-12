@@ -1,8 +1,14 @@
-import React from "react"
-import { GatsbyImage } from "gatsby-plugin-image"
+import React from "react";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
-const MainImage = ({ img, description }) => {
-  return <GatsbyImage className="main-image" image={img} alt={description} />
-}
+const MainImage = ({ image }) => {
+  return (
+    <GatsbyImage
+      className="main-image"
+      image={getImage(image.localFile.childImageSharp.gatsbyImageData)}
+      alt={image.alternativeText}
+    />
+  );
+};
 
-export default MainImage
+export default MainImage;

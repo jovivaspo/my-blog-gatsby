@@ -1,26 +1,32 @@
 /*MODULES*/
-import React from "react"
+import React from "react";
 /*COMPONENTS*/
-import Title from "./Title"
-import Tag from "./Tag"
-import MainImage from "./MainImage"
+import Title from "./Title";
+import Tag from "./Tag";
+import MainImage from "./MainImage";
 /*CSS*/
-import "../assets/css/header.css"
+import "../assets/css/header.css";
 
-const Header = ({ title, img, description, tag }) => {
+const Header = ({ title, image, tags }) => {
   return (
     <header className="header">
       <div className="content-main-image">
         {" "}
         <div className="gradient-image"></div>
-        <MainImage img={img} alt={description} />
+        <MainImage image={image} />
       </div>
       <div className="header-content">
-        {tag && <Tag tag={tag} />}
+        {tags.name ? (
+          <Tag tag={tags} />
+        ) : (
+          tags.map((tag, index) => {
+            return <Tag tag={tag} key={index} />;
+          })
+        )}
         <Title title={title} />
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

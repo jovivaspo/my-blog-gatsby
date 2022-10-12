@@ -1,12 +1,12 @@
-import React from "react"
-import "../assets/css/tag.css"
+import React from "react";
+import "../assets/css/tag.css";
 
 const Tag = ({ tag }) => {
   return (
     <div className="container-tag">
-      <p>{tag}</p>
+      <p>{tag.name}</p>
     </div>
-  )
-}
+  );
+};
 
-export default Tag
+export default Tag;

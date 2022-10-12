@@ -1,10 +1,8 @@
 .container-tag {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
   max-width: 80px;
   background-color: black;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 1rem;
   border-radius: 999px;
 }
 
