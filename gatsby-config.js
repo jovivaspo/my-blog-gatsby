@@ -8,6 +8,16 @@ const strapiConfig = {
   collectionTypes: [
     {
       singularName: "article",
+      queryParams: {
+        populate: {
+          thumbnail: "*",
+          author: "*",
+          category: "*",
+          blocks: {
+            populate: "*",
+          },
+        },
+      },
     },
     { singularName: "category" },
     { singularName: "author" },
@@ -19,6 +29,7 @@ module.exports = {
     siteUrl: `https://www.yourdomain.tld`,
   },
   plugins: [
+    `gatsby-plugin-gatsby-cloud`,
     {
       resolve: `gatsby-source-strapi`,
       options: strapiConfig,

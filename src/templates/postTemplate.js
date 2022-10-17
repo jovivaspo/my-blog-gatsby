@@ -5,12 +5,13 @@ import Layout from "../components/Layout";
 import { graphql } from "gatsby";
 import Header from "../components/Header";
 import Sidebar from "../components/Sidebar";
+import BlockRender from "../components/BlockRender";
 /*CSS*/
 import "../assets/css/postTemplate.css";
 
 const postTemplate = ({ data }) => {
   console.log("DATA", data.allStrapiArticle.nodes[0]);
-  const { body, title, description, thumbnail, category } =
+  const { blocks, title, description, thumbnail, category } =
     data.allStrapiArticle.nodes[0];
   return (
     <Layout>
@@ -21,11 +22,9 @@ const postTemplate = ({ data }) => {
         tags={category}
       />
       <div className="full-content">
-        <section
-          dangerouslySetInnerHTML={{
-            __html: body.data.childMarkdownRemark.html,
-          }}
-        ></section>
+        <section>
+          <BlockRender blocks={blocks} />
+        </section>
         <Sidebar />
       </div>
     </Layout>
@@ -55,26 +54,28 @@ export const query = graphql`
         }
         title
         publishedAt(fromNow: true)
-        body {
-          data {
-            body
-            childMarkdownRemark {
-              html
-              rawMarkdownBody
-            }
-          }
-          medias {
-            alternativeText
-            file {
+        blocks {
+          ... on STRAPI__COMPONENT_SHARED_MEDIA {
+            strapi_component
+            image {
               alternativeText
-            }
-            localFile {
-              childImageSharp {
-                gatsbyImageData(layout: CONSTRAINED, width: 600, height: 480)
+              localFile {
+                childImageSharp {
+                  gatsbyImageData(width: 600, height: 480, layout: CONSTRAINED)
+                }
               }
             }
-            src
-            url
+          }
+          ... on STRAPI__COMPONENT_SHARED_RICH_TEXT {
+            strapi_component
+            body {
+              data {
+                body
+                childMarkdownRemark {
+                  html
+                }
+              }
+            }
           }
         }
       }
