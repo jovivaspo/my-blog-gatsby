@@ -3,7 +3,7 @@ import "../assets/css/tag.css";
 
 const Tag = ({ tag }) => {
   return (
-    <div className="container-tag">
+    <div className="container-tag background-color">
       <p>{tag.name}</p>
     </div>
   );

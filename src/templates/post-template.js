@@ -1,18 +1,27 @@
 /*MODULES*/
 import React from "react";
 /*COMPONENTS*/
-import Layout from "../components/Layout";
+import Layout from "../components/layout";
 import { graphql } from "gatsby";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
-import BlockRender from "../components/BlockRender";
+import Header from "../components/header";
+import Sidebar from "../components/sidebar";
+import BlockRender from "../components/block-render";
 /*CSS*/
-import "../assets/css/postTemplate.css";
+import "../assets/css/post-template.css";
+import PostHeader from "../components/post-header";
 
 const postTemplate = ({ data }) => {
   console.log("DATA", data.allStrapiArticle.nodes[0]);
-  const { blocks, title, description, thumbnail, category } =
-    data.allStrapiArticle.nodes[0];
+  const {
+    blocks,
+    title,
+    description,
+    thumbnail,
+    category,
+    author,
+    publishedAt,
+  } = data.allStrapiArticle.nodes[0];
+
   return (
     <Layout>
       <Header
@@ -21,6 +30,7 @@ const postTemplate = ({ data }) => {
         image={thumbnail}
         tags={category}
       />
+      <PostHeader author={author} publishedAt={publishedAt} />
       <div className="full-content">
         <section>
           <BlockRender blocks={blocks} />
@@ -53,7 +63,7 @@ export const query = graphql`
           }
         }
         title
-        publishedAt(fromNow: true)
+        publishedAt(fromNow: false)
         blocks {
           ... on STRAPI__COMPONENT_SHARED_MEDIA {
             strapi_component
@@ -61,7 +71,7 @@ export const query = graphql`
               alternativeText
               localFile {
                 childImageSharp {
-                  gatsbyImageData(width: 600, height: 480, layout: CONSTRAINED)
+                  gatsbyImageData(width: 600, height: 400, layout: CONSTRAINED)
                 }
               }
             }

@@ -1,9 +1,11 @@
 .container-tag {
   display: inline-block;
-  max-width: 80px;
-  background-color: black;
+  max-width: 100px;
+  min-width: 60px;
   padding: 0.3rem 1rem;
-  border-radius: 999px;
+  border-radius: 5px;
+
+  background: black;
 }
 
 .container-tag p {
@@ -12,4 +14,5 @@
   font-size: 0.7rem;
   font-weight: bold;
   text-transform: uppercase;
+  text-align: center;
 }

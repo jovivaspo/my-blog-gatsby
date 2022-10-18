@@ -1,38 +1,37 @@
 /*MODULES*/
-import React from "react"
+import React from "react";
 
 /*COMPONENTS*/
-import Logo from "./Logo"
-import Menu from "./Menu"
-import MenuIcon from "./MenuIcon"
-import { Link } from "gatsby"
+import Logo from "./logo";
+import Menu from "./menu";
+import MenuIcon from "./menu-icon";
 
 /*CSS*/
-import "../assets/css/navbar.css"
-import { useMenu } from "../hooks/useMenu"
+import "../assets/css/navbar.css";
+import { useMenu } from "../hooks/useMenu";
 
 const Navbar = () => {
-  const { isActive, handlerActive } = useMenu()
-  const menuRef = React.useRef(null)
-  const iconRef = React.useRef(null)
+  const { isActive, handlerActive } = useMenu();
+  const menuRef = React.useRef(null);
+  const iconRef = React.useRef(null);
 
   React.useEffect(() => {
-    const handler = e => {
+    const handler = (e) => {
       if (
         isActive &&
         !menuRef.current.contains(e.target) &&
         !iconRef.current.contains(e.target)
       ) {
-        handlerActive()
+        handlerActive();
       }
-    }
+    };
 
-    document.addEventListener("mousedown", handler)
+    document.addEventListener("mousedown", handler);
 
     return () => {
-      document.removeEventListener("mousedown", handler)
-    }
-  }, [isActive])
+      document.removeEventListener("mousedown", handler);
+    };
+  }, [isActive]);
 
   return (
     <div className="navbar">
@@ -47,7 +46,7 @@ const Navbar = () => {
         />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

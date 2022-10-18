@@ -1,9 +1,9 @@
 /*MODULES*/
 import React from "react";
 /*COMPONENTS*/
-import Title from "./Title";
-import Tag from "./Tag";
-import MainImage from "./MainImage";
+import Title from "./title";
+import Tag from "./tag";
+import MainImage from "./main-image";
 /*CSS*/
 import "../assets/css/header.css";
 

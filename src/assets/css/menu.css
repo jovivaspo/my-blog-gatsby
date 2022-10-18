@@ -1,8 +1,13 @@
 .menu-container {
   height: 100%;
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   align-items: center;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
 }
 
 li {
@@ -15,6 +20,7 @@ li {
   font-family: "Libre Franklin";
   font-weight: 500;
   color: white;
+  padding: 1rem;
 }
 
 .menu-container a:hover {

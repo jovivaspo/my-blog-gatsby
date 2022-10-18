@@ -1,39 +1,41 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import "../assets/css/sidebar.css";
-import ItemSidebar from "./ItemSidebar";
+import ItemSidebar from "./item-sidebar";
 
 const Sidebar = () => {
-  /* const result = useStaticQuery(query);
+  const result = useStaticQuery(query);
   console.log(result);
-  const lastPosts = result.allContentfulPost.nodes;
+  const lastPosts = result.allStrapiArticle.nodes;
 
   return (
     <div className="sidebar">
-      <h3>Últimos posts</h3>
+      <h3>Last Posts</h3>
       {lastPosts.map((post, index) => {
         return <ItemSidebar post={post} key={index} />;
       })}
     </div>
   );
-  */
 };
 
 export default Sidebar;
 
-/*
 const query = graphql`
   query lastPost {
-    allContentfulPost(limit: 10, sort: { order: DESC, fields: createdAt }) {
+    allStrapiArticle(limit: 10, sort: { order: DESC, fields: createdAt }) {
       nodes {
         title
         slug
-        createdAt(fromNow: true)
-        image {
-          gatsbyImageData(layout: CONSTRAINED, width: 350, height: 180)
+        publishedAt(fromNow: true)
+        thumbnail {
+          alternativeText
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, width: 350, height: 180)
+            }
+          }
         }
       }
     }
   }
-`
-*/
+`;

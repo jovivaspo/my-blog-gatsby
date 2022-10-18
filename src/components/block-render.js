@@ -1,8 +1,8 @@
 /*MODULES*/
 import React from "react";
 /*COMPONENTS*/
-import Image from "./Image";
-import RichText from "./RichText";
+import Image from "./block-image";
+import RichText from "./block-richtext";
 
 const ComponentMap = {
   "shared.rich-text": RichText,

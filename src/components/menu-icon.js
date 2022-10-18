@@ -1,26 +1,26 @@
 /*MODULES*/
-import React from "react"
-import { useEffect } from "react"
+import React from "react";
+import { useEffect } from "react";
 
 /*COMPONENTS*/
 
 /*CSS*/
-import "../assets/css/menuIcon.css"
+import "../assets/css/menu-icon.css";
 
 const MenuIcon = React.forwardRef((props, ref) => {
-  const { isActive, handlerActive, color } = props
-  const barRef = React.useRef()
-  const XRef = React.useRef()
+  const { isActive, handlerActive, color } = props;
+  const barRef = React.useRef();
+  const XRef = React.useRef();
 
   useEffect(() => {
     if (isActive) {
-      barRef.current.classList.add("hidden")
-      XRef.current.classList.remove("hidden")
+      barRef.current.classList.add("hidden");
+      XRef.current.classList.remove("hidden");
     } else {
-      barRef.current.classList.remove("hidden")
-      XRef.current.classList.add("hidden")
+      barRef.current.classList.remove("hidden");
+      XRef.current.classList.add("hidden");
     }
-  }, [isActive])
+  }, [isActive]);
 
   return (
     <button ref={ref} className="menu-btn" onClick={handlerActive}>
@@ -61,7 +61,7 @@ const MenuIcon = React.forwardRef((props, ref) => {
         </g>
       </svg>
     </button>
-  )
-})
+  );
+});
 
-export default MenuIcon
+export default MenuIcon;
