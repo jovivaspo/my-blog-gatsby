@@ -1,9 +1,11 @@
 .navbar {
-  position: absolute;
-  top: 0;
+  position: sticky;
+  top: 0px;
   height: 80px;
   width: 100vw;
-  background: transparent;
+  z-index: 5;
+  background-color: var(--color-background);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-content {
@@ -13,8 +15,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  z-index: 10;
-  padding: 1rem;
 }
 
 @media screen and (max-width: 768px) {

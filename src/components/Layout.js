@@ -6,16 +6,16 @@ import Navbar from "./navbar";
 import Footer from "./footer";
 
 /*CSS*/
-import "../assets/css/normalize.css";
 import "../assets/css/layout.css";
 
 const Layout = ({ children }) => {
   return (
-    <main className="layout">
+    <div className="layout">
+      <section className="page-color"></section>
       <Navbar />
-      <>{children}</>
+      {children}
       <Footer />
-    </main>
+    </div>
   );
 };
 

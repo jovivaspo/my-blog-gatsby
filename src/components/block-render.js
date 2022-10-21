@@ -12,8 +12,6 @@ const ComponentMap = {
 const Block = ({ block }) => {
   const Component = ComponentMap[block.strapi_component];
 
-  console.log(block);
-
   if (!Component) {
     return null;
   }
@@ -22,6 +20,7 @@ const Block = ({ block }) => {
 };
 
 const BlockRender = ({ blocks }) => {
+  console.log(blocks);
   return (
     <>
       {blocks.map((block, index) => {

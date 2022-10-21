@@ -1,0 +1,10 @@
+import React from "react";
+import { ThemeProvider } from "../context/theme-context";
+import "../assets/css/global.css";
+import "../assets/css/normalize.css";
+
+const App = ({ children }) => {
+  return <ThemeProvider>{children}</ThemeProvider>;
+};
+
+export default App;

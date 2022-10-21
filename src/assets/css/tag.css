@@ -1,15 +1,15 @@
+.container-tags {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
 .container-tag {
   display: inline-block;
-  max-width: 100px;
-  min-width: 60px;
-  padding: 0.3rem 1rem;
-  border-radius: 5px;
-
-  background: black;
 }
 
 .container-tag p {
-  color: #fff;
+  color: --text-color;
+  opacity: 0.7;
   font-family: "Lato";
   font-size: 0.7rem;
   font-weight: bold;

@@ -9,6 +9,7 @@ import MenuIcon from "./menu-icon";
 /*CSS*/
 import "../assets/css/navbar.css";
 import { useMenu } from "../hooks/useMenu";
+import BottomThemeToggle from "./bottom-theme-toggle";
 
 const Navbar = () => {
   const { isActive, handlerActive } = useMenu();
@@ -34,9 +35,10 @@ const Navbar = () => {
   }, [isActive]);
 
   return (
-    <div className="navbar">
+    <nav className="navbar">
       <div className="navbar-content">
         <Logo />
+        <BottomThemeToggle />
         <Menu isActive={isActive} ref={menuRef} />
         <MenuIcon
           ref={iconRef}
@@ -45,7 +47,7 @@ const Navbar = () => {
           isActive={isActive}
         />
       </div>
-    </div>
+    </nav>
   );
 };
 

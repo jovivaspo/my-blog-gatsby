@@ -4,14 +4,15 @@ import React from "react";
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
 import Header from "../components/header";
-import Sidebar from "../components/sidebar";
+import Sidebar from "../components/last-posts";
 import BlockRender from "../components/block-render";
 /*CSS*/
 import "../assets/css/post-template.css";
-import PostHeader from "../components/post-header";
+import TableContent from "../components/table-content";
+import LastPosts from "../components/last-posts";
 
 const postTemplate = ({ data }) => {
-  console.log("DATA", data.allStrapiArticle.nodes[0]);
+  console.log(data);
   const {
     blocks,
     title,
@@ -29,13 +30,15 @@ const postTemplate = ({ data }) => {
         description={description}
         image={thumbnail}
         tags={category}
+        author={author}
+        publishedAt={publishedAt}
       />
-      <PostHeader author={author} publishedAt={publishedAt} />
       <div className="full-content">
         <section>
           <BlockRender blocks={blocks} />
+          <LastPosts />
         </section>
-        <Sidebar />
+        <TableContent blocks={blocks} />
       </div>
     </Layout>
   );
@@ -58,7 +61,7 @@ export const query = graphql`
           alternativeText
           localFile {
             childImageSharp {
-              gatsbyImageData(layout: FULL_WIDTH)
+              gatsbyImageData(width: 1200, height: 600, layout: CONSTRAINED)
             }
           }
         }
@@ -83,6 +86,7 @@ export const query = graphql`
                 body
                 childMarkdownRemark {
                   html
+                  tableOfContents
                 }
               }
             }

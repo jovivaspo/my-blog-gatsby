@@ -57,6 +57,18 @@ module.exports = {
               showCaptions: true,
             },
           },
+          {
+            resolve: `gatsby-remark-table-of-contents`,
+            options: {
+              exclude: "Table of Contents",
+              tight: false,
+              ordered: false,
+              fromHeading: 2,
+              toHeading: 2,
+              className: "table-of-contents",
+            },
+          },
+          `gatsby-remark-autolink-headers`,
         ],
       },
     },
