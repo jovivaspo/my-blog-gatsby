@@ -17,12 +17,12 @@ const ThemeProvider = ({ children }) => {
     if (theme === "dark") {
       setTheme("light");
       root.classList.remove("dark");
+      window.localStorage.setItem("color-mode", "light");
     } else {
       setTheme("dark");
       root.classList.add("dark");
+      window.localStorage.setItem("color-mode", "dark");
     }
-
-    window.localStorage.setItem("color-mode", theme);
   };
 
   const data = { theme, handlerTheme };

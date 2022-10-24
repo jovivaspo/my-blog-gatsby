@@ -1,18 +1,22 @@
 /*MODULES*/
-import React from "react"
-import { StaticImage } from "gatsby-plugin-image"
+import React from "react";
+import { StaticImage } from "gatsby-plugin-image";
 
 /*COMPONENTS*/
 
 /*CSS*/
-import "../assets/css/logo.css"
+import "../assets/css/logo.css";
 
 const Logo = () => {
   return (
     <div className="logo-container">
-      <StaticImage src="../assets/images/Logo.png" alt="Logo de prueba" />
+      <StaticImage
+        src="../assets/images/Logo.png"
+        alt="Logo de prueba"
+        className="logo"
+      />
     </div>
-  )
-}
+  );
+};
 
-export default Logo
+export default Logo;

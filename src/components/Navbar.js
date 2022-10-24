@@ -1,5 +1,6 @@
 /*MODULES*/
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../context/theme-context";
 
 /*COMPONENTS*/
 import Logo from "./logo";
@@ -9,20 +10,16 @@ import MenuIcon from "./menu-icon";
 /*CSS*/
 import "../assets/css/navbar.css";
 import { useMenu } from "../hooks/useMenu";
-import BottomThemeToggle from "./bottom-theme-toggle";
 
 const Navbar = () => {
+  const { theme, handlerTheme } = useContext(ThemeContext);
   const { isActive, handlerActive } = useMenu();
   const menuRef = React.useRef(null);
   const iconRef = React.useRef(null);
 
   React.useEffect(() => {
     const handler = (e) => {
-      if (
-        isActive &&
-        !menuRef.current.contains(e.target) &&
-        !iconRef.current.contains(e.target)
-      ) {
+      if (isActive && !iconRef.current.contains(e.target)) {
         handlerActive();
       }
     };
@@ -38,11 +35,15 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-content">
         <Logo />
-        <BottomThemeToggle />
-        <Menu isActive={isActive} ref={menuRef} />
+        <Menu
+          isActive={isActive}
+          ref={menuRef}
+          theme={theme}
+          handlerTheme={handlerTheme}
+        />
         <MenuIcon
           ref={iconRef}
-          color="#fff"
+          color={theme === "dark" ? "#ddd" : "#222"}
           handlerActive={handlerActive}
           isActive={isActive}
         />

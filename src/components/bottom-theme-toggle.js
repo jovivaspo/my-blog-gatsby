@@ -7,9 +7,7 @@ import Moon from "./icons/moon";
 /*CSS*/
 import "../assets/css/bottom-theme-toggle.css";
 
-const BottomThemeToggle = () => {
-  const { theme, handlerTheme } = useContext(ThemeContext);
-  console.log(theme);
+const BottomThemeToggle = ({ theme, handlerTheme }) => {
   return (
     <div className="container-bottom">
       <bottom className="btn-theme" onClick={handlerTheme}>

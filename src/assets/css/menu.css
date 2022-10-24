@@ -3,7 +3,6 @@
   display: flex;
   gap: 2rem;
   align-items: center;
-  background-color: --color-background;
 }
 
 ul {
@@ -20,8 +19,8 @@ li {
   text-transform: uppercase;
   font-family: "Libre Franklin";
   font-weight: 500;
-  color: --color-text;
   padding: 1rem;
+  color: var(--color-text);
 }
 
 .menu-container a:hover {
@@ -30,27 +29,46 @@ li {
 
 @media screen and (max-width: 768px) {
   .menu-container {
+    height: 100vh;
+    width: 100vw;
+
     position: absolute;
     left: 0;
     top: 0;
+
+    padding-top: 60px;
+    padding-left: 70px;
 
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
 
-    height: 100vh;
-    width: 240px;
-    padding-top: 1.5rem;
-    background-color: --color-background;
-    transition: transform 0.3s ease-out 0s;
-    transform: translate(-250%, 0%);
+    background-color: transparent;
+    transition: all 500ms ease 0s;
+  }
+
+  .menu-container ul {
+    transition: transform 500ms ease 0s;
+    transform: translate(-1000%, 0%);
+  }
+
+  .menu-container li {
+    display: flex;
+    justify-content: center;
+    text-align: center;
   }
 
   .menu-container a {
-    color: --color-text;
+    color: var(--color-text);
+    font-size: 1.3rem;
   }
 
   .active {
-    transform: translate(0, 0);
+    background-color: var(--color-background);
+    opacity: 0.97;
+  }
+
+  .active > ul {
+    transform: translate(0%, 0%);
   }
 }

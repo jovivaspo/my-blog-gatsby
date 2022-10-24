@@ -5,6 +5,7 @@
   border: none;
   display: none;
   margin: 2rem;
+  margin-top: 1rem;
 }
 
 @media screen and (max-width: 768px) {

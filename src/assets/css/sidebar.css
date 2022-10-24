@@ -36,16 +36,6 @@
 
 @media screen and (max-width: 1000px) {
   .sidebar {
-    padding: 1rem;
-  }
-
-  .sidebar h3 {
-    text-align: center;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .sidebar {
     display: none;
   }
 }

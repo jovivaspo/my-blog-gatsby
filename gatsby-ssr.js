@@ -5,7 +5,7 @@ const MagicScriptTag = () => {
   const codeToRunOnClient = `
 function getInitialColorMode(){
  
-  const colorPreference = window.localStorage.getItem("color-theme");
+  const colorPreference = window.localStorage.getItem("color-mode");
 
   if (colorPreference) {
     return colorPreference;

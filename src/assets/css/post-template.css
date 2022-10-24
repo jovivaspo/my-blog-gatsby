@@ -13,13 +13,19 @@
   padding-left: 3rem;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
   .full-content {
     margin-top: 1rem;
   }
   .full-content section {
-    width: 90%;
-    padding-left: 0;
+    width: 100%;
+    padding: 1rem;
     margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .full-content section {
+    padding: 2rem;
   }
 }
