@@ -11,7 +11,6 @@ import "../assets/css/layout.css";
 const Layout = ({ children }) => {
   return (
     <div className="layout">
-      <section className="page-color"></section>
       <Navbar />
       {children}
       <Footer />

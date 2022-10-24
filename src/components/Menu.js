@@ -1,5 +1,6 @@
 /*MODULES*/
 import React from "react";
+
 /*COMPONENTS*/
 import { Link } from "gatsby";
 import BottomThemeToggle from "./bottom-theme-toggle";
@@ -23,7 +24,13 @@ const Menu = React.forwardRef((props, ref) => {
         return (
           <ul key={index}>
             <li>
-              <Link to={el === "home" ? "/" : `/${el}`}>{el}</Link>
+              <Link
+                className="menu-link"
+                activeClassName="menu-link-underline"
+                to={el === "home" ? "/" : `/${el}`}
+              >
+                {el}
+              </Link>
             </li>
           </ul>
         );

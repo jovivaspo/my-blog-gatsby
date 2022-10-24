@@ -1,6 +1,8 @@
 import React from "react";
 import Layout from "../components/layout";
 
-export default function Home() {
+const About = () => {
   return <Layout />;
-}
+};
+
+export default About;

@@ -4,7 +4,6 @@ import React from "react";
 import Layout from "../components/layout";
 import { graphql } from "gatsby";
 import Header from "../components/header";
-import Sidebar from "../components/last-posts";
 import BlockRender from "../components/block-render";
 /*CSS*/
 import "../assets/css/post-template.css";
