@@ -1,6 +1,6 @@
 /*MODULES*/
 import React, { useContext } from "react";
-import { ThemeContext } from "../context/theme-context";
+
 /*COMPONENTS*/
 import Sun from "./icons/sun";
 import Moon from "./icons/moon";

@@ -18,9 +18,21 @@ html {
 }
 
 body {
-  font-family: "Lato";
+  font-family: "Montserrat";
+  font-weight: 400;
   background-color: var(--color-background);
 }
+
+body::-webkit-scrollbar {
+  width: 8px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--color-text);
+  border-radius: 20px;
+  height: 10px;
+}
+
 p {
   font-size: 18px;
   color: var(--color-text);
@@ -35,9 +47,22 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: "Anton";
+  font-family: "Montserrat";
   color: var(--color-text);
-  margin: 0;
+  margin-top: 1.8rem;
+  margin-bottom: 1.2rem;
+}
+
+h1 {
+  font-family: "Bebas Neue";
+}
+
+h2 {
+  font-size: 1.6rem;
+}
+
+h3 {
+  font-size: 1.4rem;
 }
 
 a {

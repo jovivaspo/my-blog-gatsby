@@ -10,6 +10,9 @@ const strapiConfig = {
       singularName: "article",
       queryParams: {
         populate: {
+          title: "*",
+          description: "*",
+          slug: "*",
           thumbnail: "*",
           author: "*",
           category: "*",
@@ -86,16 +89,12 @@ module.exports = {
         fonts: {
           google: [
             {
-              family: "Anton",
+              family: "Bebas Neue",
               variants: ["400"],
             },
             {
-              family: "Libre Franklin",
-              variants: ["300", "400", "500"],
-            },
-            {
-              family: "Lato",
-              variants: ["300", "400", "500"],
+              family: "Montserrat",
+              variants: ["300", "400", "600"],
             },
           ],
         },

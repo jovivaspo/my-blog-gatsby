@@ -18,8 +18,8 @@ li {
   position: relative;
   text-decoration: none;
   text-transform: uppercase;
-  font-family: "Libre Franklin";
-  font-weight: 500;
+  font-family: "Bebas Neue";
+  font-size: 20px;
   padding: 8px;
   color: var(--color-text);
 }
