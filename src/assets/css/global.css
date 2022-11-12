@@ -6,6 +6,7 @@ html {
   --color-background: white;
   --color-text: #222;
   --color-primary: #164bc5;
+  --color-shadow: #222;
   /* ... more colors */
 }
 

@@ -1,6 +1,7 @@
 /*MODULES*/
 import React, { useContext } from "react";
 import { ThemeContext } from "../context/theme-context";
+import { graphql, useStaticQuery } from "gatsby";
 
 /*COMPONENTS*/
 import Logo from "./logo";
@@ -11,23 +12,44 @@ import MenuIcon from "./menu-icon";
 import "../assets/css/navbar.css";
 import { useMenu } from "../hooks/useMenu";
 
-const Navbar = () => {
+const Navbar = ({}) => {
   const { theme, handlerTheme } = useContext(ThemeContext);
   const { isActive, handlerActive } = useMenu();
+
   const menuRef = React.useRef(null);
   const iconRef = React.useRef(null);
 
+  const data = useStaticQuery(graphql`
+    query getCategories {
+      allStrapiCategory {
+        nodes {
+          name
+        }
+      }
+    }
+  `);
+
+  const categories = data.allStrapiCategory.nodes.map(
+    (category) => category.name
+  );
+
   React.useEffect(() => {
-    const handler = (e) => {
-      if (isActive && !iconRef.current.contains(e.target)) {
+    const handlerMenu = (e) => {
+      if (
+        isActive &&
+        !iconRef.current.contains(e.target) &&
+        !e.target.matches(".btn-theme") &&
+        !e.target.matches(".btn-theme > *") &&
+        !e.target.matches("a")
+      ) {
         handlerActive();
       }
     };
 
-    document.addEventListener("mousedown", handler);
+    document.addEventListener("mousedown", handlerMenu);
 
     return () => {
-      document.removeEventListener("mousedown", handler);
+      document.removeEventListener("mousedown", handlerMenu);
     };
   }, [isActive]);
 
@@ -40,6 +62,7 @@ const Navbar = () => {
           ref={menuRef}
           theme={theme}
           handlerTheme={handlerTheme}
+          categories={categories}
         />
         <MenuIcon
           ref={iconRef}

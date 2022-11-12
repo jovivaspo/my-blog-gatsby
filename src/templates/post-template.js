@@ -11,7 +11,6 @@ import TableContent from "../components/table-content";
 import LastPosts from "../components/last-posts";
 
 const postTemplate = ({ data }) => {
-  console.log(data);
   const {
     blocks,
     title,
