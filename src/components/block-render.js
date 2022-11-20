@@ -20,7 +20,6 @@ const Block = ({ block }) => {
 };
 
 const BlockRender = ({ blocks }) => {
-  console.log(blocks);
   return (
     <>
       {blocks.map((block, index) => {

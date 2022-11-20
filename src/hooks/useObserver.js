@@ -2,17 +2,17 @@
 import React from "react";
 import { useEffect } from "react";
 
-const useObserver = (target, options) => {
+const useObserver = (target) => {
+  console.log(target);
   const [isIntersection, setIstersectiong] = React.useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const [entry] = entries;
-        setIstersectiong(entry);
-      },
-      [options]
-    );
+    const handlerObserver = (entries) => {
+      const [entry] = entries;
+      console.log(entry.isIntersecting);
+      setIstersectiong(entry.isIntersecting);
+    };
+    const observer = new IntersectionObserver(handlerObserver, options);
 
     if (target.current) observer.observe(target.current);
     return () => {
