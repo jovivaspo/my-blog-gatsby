@@ -6,7 +6,7 @@ const MainImage = ({ image }) => {
     <GatsbyImage
       className="main-image"
       image={getImage(image.localFile.childImageSharp.gatsbyImageData)}
-      alt={image.alternativeText}
+      alt={image?.alternativeText}
     />
   );
 };

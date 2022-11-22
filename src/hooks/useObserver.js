@@ -1,26 +1,41 @@
 /*MODULES*/
 import React from "react";
-import { useEffect } from "react";
 
-const useObserver = (target) => {
-  console.log(target);
-  const [isIntersection, setIstersectiong] = React.useState(false);
+const options = {
+  rootMargin: "-80px 0px -200px 0px",
+  threshold: 1,
+};
 
-  useEffect(() => {
+const useObserver = (targets) => {
+  const observer = React.useRef();
+  const [headingsActive, setHeadingsAtctives] = React.useState([]);
+
+  React.useEffect(() => {
+    let snapshot = headingsActive;
     const handlerObserver = (entries) => {
-      const [entry] = entries;
-      console.log(entry.isIntersecting);
-      setIstersectiong(entry.isIntersecting);
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !snapshot.includes(entry.target)) {
+          snapshot = [...snapshot, entry.target];
+        }
+        if (!entry.isIntersecting && snapshot.includes(entry.target)) {
+          snapshot = snapshot.filter((el) => el !== entry.target);
+        }
+      });
+      if (snapshot.length !== 0) {
+        setHeadingsAtctives(snapshot);
+      }
     };
-    const observer = new IntersectionObserver(handlerObserver, options);
+    observer.current?.disconnect();
+    observer.current = new IntersectionObserver(handlerObserver, options);
 
-    if (target.current) observer.observe(target.current);
-    return () => {
-      if (target.current) observer.unobserve(target.current);
-    };
-  }, [target]);
+    const stateElements = Array.from(targets).forEach((el) => {
+      observer.current.observe(el);
+    });
 
-  return isIntersection;
+    return () => observer.current?.disconnect();
+  }, [targets, options]);
+
+  return headingsActive;
 };
 
 export { useObserver };
