@@ -6,33 +6,35 @@ const options = {
   threshold: 1,
 };
 
-const useObserver = (targets) => {
+const useObserver = (targets, clickInLink) => {
   const observer = React.useRef();
   const [headingsActive, setHeadingsAtctives] = React.useState([]);
 
   React.useEffect(() => {
-    let snapshot = headingsActive;
-    const handlerObserver = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting && !snapshot.includes(entry.target)) {
-          snapshot = [...snapshot, entry.target];
+    if (!clickInLink.click) {
+      let snapshot = headingsActive;
+      const handlerObserver = (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !snapshot.includes(entry.target)) {
+            snapshot = [...snapshot, entry.target];
+          }
+          if (!entry.isIntersecting && snapshot.includes(entry.target)) {
+            snapshot = snapshot.filter((el) => el !== entry.target);
+          }
+        });
+        if (snapshot.length !== 0) {
+          setHeadingsAtctives(snapshot);
         }
-        if (!entry.isIntersecting && snapshot.includes(entry.target)) {
-          snapshot = snapshot.filter((el) => el !== entry.target);
-        }
+      };
+      observer.current?.disconnect();
+      observer.current = new IntersectionObserver(handlerObserver, options);
+
+      const stateElements = Array.from(targets).forEach((el) => {
+        observer.current.observe(el);
       });
-      if (snapshot.length !== 0) {
-        setHeadingsAtctives(snapshot);
-      }
-    };
-    observer.current?.disconnect();
-    observer.current = new IntersectionObserver(handlerObserver, options);
 
-    const stateElements = Array.from(targets).forEach((el) => {
-      observer.current.observe(el);
-    });
-
-    return () => observer.current?.disconnect();
+      return () => observer.current?.disconnect();
+    }
   }, [targets, options]);
 
   return headingsActive;

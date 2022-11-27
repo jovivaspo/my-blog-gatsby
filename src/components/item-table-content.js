@@ -1,6 +1,6 @@
 import React from "react";
 
-const ItemTableContent = ({ title, index, headingsActive }) => {
+const ItemTableContent = ({ title, index, headingsActive, handlerClick }) => {
   const [isIntersection, setIstersectiong] = React.useState(false);
   const ref = React.useRef();
   React.useEffect(() => {
@@ -11,6 +11,7 @@ const ItemTableContent = ({ title, index, headingsActive }) => {
 
   return (
     <li
+      onClick={handlerClick}
       ref={ref}
       key={index}
       dangerouslySetInnerHTML={{

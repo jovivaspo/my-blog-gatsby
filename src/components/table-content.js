@@ -8,6 +8,10 @@ const TableContent = ({ blocks }) => {
   const [titles, setTitles] = React.useState([]);
   const [headings, setHeadings] = React.useState([]);
   const [height, setHeight] = React.useState([]);
+  const [clickInLink, setClickInLink] = React.useState({
+    click: false,
+    element: null,
+  });
 
   React.useEffect(() => {
     setHeadings(document.querySelectorAll("h2"));
@@ -31,12 +35,10 @@ const TableContent = ({ blocks }) => {
     );
   }, []);
 
-  const headingsActive = useObserver(headings);
+  const headingsActive = useObserver(headings, clickInLink);
 
   React.useEffect(() => {
-    const event = document.event;
-    console.log(event);
-    if (tableRef.current.scrollHeight > 400) {
+    if (tableRef.current.scrollHeight > 400 && !clickInLink) {
       const index = Math.min(
         ...headingsActive.map((el) => {
           return Array.from(headings).indexOf(el);
@@ -57,6 +59,95 @@ const TableContent = ({ blocks }) => {
     tableRef.current.scrollTop = height;
   }, [height]);
 
+  React.useEffect(() => {
+    if (clickInLink?.click) {
+      const heightWindow = window.screen.availHeight;
+      const heightElement = clickInLink.element.getBoundingClientRect().height;
+      console.log(clickInLink.element);
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const [entry] = entries;
+          console.log("visible: ", entry.isIntersecting);
+          if (entry.isIntersecting)
+            setClickInLink({ click: false, element: null });
+        },
+        {
+          root: null,
+          rootMargin: `-80px 0px -${heightWindow - 80 + heightElement}px 0px`,
+          threshold: 1,
+        }
+      );
+      observer.observe(clickInLink.element);
+      return () => observer.unobserve(clickInLink.element);
+    }
+  }, [clickInLink]);
+
+  /*React.useEffect(() => {
+    console.log("holi");
+    const handler = () => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const [entry] = entries;
+
+          console.log("Es visible??", entry.isIntersecting);
+        },
+        {
+          root: null,
+          rootMargin: `-80px 0px -750px 0px`,
+          threshold: 1,
+        }
+      );
+      const el = document.querySelector(
+        "#there-are-19-signs-that-he-just-wants-to-sleep-with-you"
+      );
+      observer.observe(el);
+      return () => observer.disconnect(el);
+    };
+
+    window.addEventListener("scroll", handler);
+    return () => window.removeEventListener("scroll", handler);
+  }, [headingsActive]); */
+
+  /* React.useEffect(() => {
+    if (clickInLink) {
+      const heightWindow = window.innerHeight;
+      const heightElement = clickInLink.getBoundingClientRect().height;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const [entry] = entries;
+          console.log(entry);
+          console.log(entry.isIntersecting);
+          if (entry.isIntersecting) setClickInLink(null);
+        },
+        {
+          rootMargin: `-80px 0px -${
+            heightWindow - 100 - heightElement * 2
+          }px 0px`,
+          threshold: 1,
+        }
+      );
+      observer.observe(clickInLink);
+    
+    }
+  }, [clickInLink]);
+  */
+  const handlerClick = (e) => {
+    if (e.target.matches("li")) {
+      return false;
+    }
+
+    const contentElement = e.target.innerText;
+
+    const [element] = Array.from(headings).filter(
+      (el) => el.innerText === contentElement
+    );
+
+    setClickInLink({ click: true, element });
+  };
+
+  console.log(clickInLink);
+
   return (
     <aside className="sidebar">
       <h3>Table of Contents</h3>
@@ -66,6 +157,7 @@ const TableContent = ({ blocks }) => {
             title={title}
             key={index}
             headingsActive={headingsActive}
+            handlerClick={handlerClick}
           />
         ))}
       </div>
@@ -74,3 +166,5 @@ const TableContent = ({ blocks }) => {
 };
 
 export default TableContent;
+
+//
