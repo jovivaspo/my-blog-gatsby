@@ -18,27 +18,33 @@ const TableContent = ({ blocks }) => {
   }, []);
 
   React.useEffect(() => {
-    setTitles(
-      blocks
+    /* setTitles(
+      ...titles,
+      ...blocks
         .map((block) => {
           if (
             block.strapi_component === "shared.rich-text" &&
-            block.body.data.childMarkdownRemark.tableOfContents.length > 0 &&
-            !block.body.data.childMarkdownRemark.html.includes("<h3")
+            block.body.data.childMarkdownRemark.tableOfContents.length > 0
           ) {
             return block.body.data.childMarkdownRemark.tableOfContents.match(
-              /<a(.*?)<\/a>/
-            )[0];
+              /<a(.*?)<\/a>/g
+            );
           }
         })
         .filter((block) => block !== undefined)
+    );*/
+    setTitles(
+      Array.from(headings).map((heading) => ({
+        id: heading.id,
+        text: heading.innerText,
+      }))
     );
-  }, []);
+  }, [headings]);
 
   const headingsActive = useObserver(headings, clickInLink);
 
   React.useEffect(() => {
-    if (tableRef.current.scrollHeight > 400 && !clickInLink) {
+    if (tableRef.current.scrollHeight > 400 && clickInLink.click === false) {
       const index = Math.min(
         ...headingsActive.map((el) => {
           return Array.from(headings).indexOf(el);
@@ -53,7 +59,7 @@ const TableContent = ({ blocks }) => {
         setHeight(scrollHeight);
       }
     }
-  }, [tableRef.current, headingsActive]);
+  }, [tableRef.current, headingsActive, clickInLink]);
 
   React.useEffect(() => {
     tableRef.current.scrollTop = height;
@@ -63,13 +69,17 @@ const TableContent = ({ blocks }) => {
     if (clickInLink?.click) {
       const heightWindow = window.screen.availHeight;
       const heightElement = clickInLink.element.getBoundingClientRect().height;
-      console.log(clickInLink.element);
+
       const observer = new IntersectionObserver(
         (entries) => {
           const [entry] = entries;
-          console.log("visible: ", entry.isIntersecting);
-          if (entry.isIntersecting)
+          const timeToWait = setTimeout(() => {
             setClickInLink({ click: false, element: null });
+          }, 800);
+          if (entry.isIntersecting) {
+            clearTimeout(timeToWait);
+            setClickInLink({ click: false, element: null });
+          }
         },
         {
           root: null,
@@ -82,56 +92,6 @@ const TableContent = ({ blocks }) => {
     }
   }, [clickInLink]);
 
-  /*React.useEffect(() => {
-    console.log("holi");
-    const handler = () => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const [entry] = entries;
-
-          console.log("Es visible??", entry.isIntersecting);
-        },
-        {
-          root: null,
-          rootMargin: `-80px 0px -750px 0px`,
-          threshold: 1,
-        }
-      );
-      const el = document.querySelector(
-        "#there-are-19-signs-that-he-just-wants-to-sleep-with-you"
-      );
-      observer.observe(el);
-      return () => observer.disconnect(el);
-    };
-
-    window.addEventListener("scroll", handler);
-    return () => window.removeEventListener("scroll", handler);
-  }, [headingsActive]); */
-
-  /* React.useEffect(() => {
-    if (clickInLink) {
-      const heightWindow = window.innerHeight;
-      const heightElement = clickInLink.getBoundingClientRect().height;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          const [entry] = entries;
-          console.log(entry);
-          console.log(entry.isIntersecting);
-          if (entry.isIntersecting) setClickInLink(null);
-        },
-        {
-          rootMargin: `-80px 0px -${
-            heightWindow - 100 - heightElement * 2
-          }px 0px`,
-          threshold: 1,
-        }
-      );
-      observer.observe(clickInLink);
-    
-    }
-  }, [clickInLink]);
-  */
   const handlerClick = (e) => {
     if (e.target.matches("li")) {
       return false;
@@ -146,7 +106,7 @@ const TableContent = ({ blocks }) => {
     setClickInLink({ click: true, element });
   };
 
-  console.log(clickInLink);
+  console.log(headings);
 
   return (
     <aside className="sidebar">

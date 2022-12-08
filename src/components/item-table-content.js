@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 
 const ItemTableContent = ({ title, index, headingsActive, handlerClick }) => {
   const [isIntersection, setIstersectiong] = React.useState(false);
@@ -14,11 +15,10 @@ const ItemTableContent = ({ title, index, headingsActive, handlerClick }) => {
       onClick={handlerClick}
       ref={ref}
       key={index}
-      dangerouslySetInnerHTML={{
-        __html: title,
-      }}
       className={isIntersection && "isIntersecting"}
-    ></li>
+    >
+      <Link to={`#${title.id}`}>{title.text}</Link>
+    </li>
   );
 };
 

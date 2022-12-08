@@ -9,15 +9,33 @@ exports.createPages = async ({ graphql, actions }) => {
           slug
         }
       }
+      allStrapiCategory {
+        nodes {
+          name
+        }
+      }
     }
   `);
 
-  result.data.allStrapiArticle.nodes.forEach((post) => {
+  const articles = result.data.allStrapiArticle.nodes;
+  const categories = result.data.allStrapiCategory.nodes;
+
+  articles.forEach((post) => {
     createPage({
       path: post.slug,
       component: path.resolve("src/templates/post-template.js"),
       context: {
         slug: post.slug,
+      },
+    });
+  });
+
+  categories.forEach((category) => {
+    createPage({
+      path: category.name,
+      component: path.resolve("src/templates/category-template.js"),
+      context: {
+        name: category.name,
       },
     });
   });

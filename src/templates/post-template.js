@@ -5,10 +5,11 @@ import Layout from "../components/layout";
 import { graphql } from "gatsby";
 import Header from "../components/header";
 import BlockRender from "../components/block-render";
-/*CSS*/
-import "../assets/css/post-template.css";
 import TableContent from "../components/table-content";
 import LastPosts from "../components/last-posts";
+import Seo from "../components/seo";
+/*CSS*/
+import "../assets/css/post-template.css";
 
 const postTemplate = ({ data }) => {
   const {
@@ -23,6 +24,7 @@ const postTemplate = ({ data }) => {
 
   return (
     <Layout>
+      <Seo title={title} description={description} />
       <Header
         title={title}
         description={description}
@@ -31,13 +33,13 @@ const postTemplate = ({ data }) => {
         author={author}
         publishedAt={publishedAt}
       />
-      <div className="full-content">
-        <section>
+      <article className="full-content">
+        <section className="post-content">
           <BlockRender blocks={blocks} />
           <LastPosts />
         </section>
         <TableContent blocks={blocks} />
-      </div>
+      </article>
     </Layout>
   );
 };

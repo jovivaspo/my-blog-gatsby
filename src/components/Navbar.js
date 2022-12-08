@@ -1,6 +1,5 @@
 /*MODULES*/
-import React, { useContext } from "react";
-import { ThemeContext } from "../context/theme-context";
+import React from "react";
 import { graphql, useStaticQuery } from "gatsby";
 
 /*COMPONENTS*/
@@ -12,8 +11,7 @@ import MenuIcon from "./menu-icon";
 import "../assets/css/navbar.css";
 import { useMenu } from "../hooks/useMenu";
 
-const Navbar = ({}) => {
-  const { theme, handlerTheme } = useContext(ThemeContext);
+const Navbar = ({ theme, handlerTheme }) => {
   const { isActive, handlerActive } = useMenu();
 
   const menuRef = React.useRef(null);
@@ -56,7 +54,7 @@ const Navbar = ({}) => {
   return (
     <nav className="navbar">
       <div className="navbar-content">
-        <Logo />
+        <Logo theme={theme} />
         <Menu
           isActive={isActive}
           ref={menuRef}

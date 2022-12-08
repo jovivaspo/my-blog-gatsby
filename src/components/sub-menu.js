@@ -69,7 +69,7 @@ const Submenu = ({
       </svg>
       {categories.map((el, index) => {
         return (
-          <Link key={index} to={`/${el.toUpperCase()}`}>
+          <Link key={index} to={`/${el}`}>
             {el}
           </Link>
         );

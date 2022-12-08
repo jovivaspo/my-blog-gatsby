@@ -30,9 +30,12 @@ const strapiConfig = {
 module.exports = {
   siteMetadata: {
     siteUrl: `https://www.yourdomain.tld`,
+    title: `HealthyRel`,
+    description: `Explore HealthyRel for tips, advice, and experiences on mental health, social relationships, and love. Learn to improve your emotional well-being and build strong and healthy relationships on our website.`,
   },
   plugins: [
     `gatsby-plugin-gatsby-cloud`,
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-strapi`,
       options: strapiConfig,
