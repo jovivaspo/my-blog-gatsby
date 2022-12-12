@@ -32,9 +32,9 @@
   font-weight: bold;
 }
 
-.footer-second-menu {
+.footer-second-menu ul {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   align-items: center;
   justify-content: center;
   margin-top: 1.5rem;

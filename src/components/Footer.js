@@ -1,5 +1,6 @@
 /*MODULES*/
 import React from "react";
+import { Link } from "gatsby";
 
 /*COMPONENTS*/
 import Logo from "./logo";
@@ -14,12 +15,12 @@ const Footer = () => {
         <div className="footer-first-menu">
           <ul>
             <li>
-              <a href="#">Home</a>
+              <Link to="/">Home</Link>
             </li>
           </ul>
           <ul>
             <li>
-              <a href="#">About</a>
+              <Link to="/about">About</Link>
             </li>
           </ul>
           <ul>
@@ -33,17 +34,10 @@ const Footer = () => {
       <div className="footer-second-menu">
         <ul>
           <li>
-            <a href="#">Cookie Policy</a>
+            <Link to="/policy-privacy">Privacy Policy</Link>
           </li>
-        </ul>
-        <ul>
           <li>
-            <a href="#">Privacy Policy</a>
-          </li>
-        </ul>
-        <ul>
-          <li>
-            <a href="#">Legal</a>
+            <Link to="/legal-notice">Legal Notice</Link>
           </li>
         </ul>
       </div>
