@@ -28,6 +28,7 @@ const strapiConfig = {
 };
 
 module.exports = {
+  pathPrefix: "https://github.com/jovivaspo/my-blog-gatsby",
   siteMetadata: {
     siteUrl: `https://www.yourdomain.tld`,
     title: `HealthyRel`,
